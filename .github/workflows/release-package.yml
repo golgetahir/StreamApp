@@ -1,8 +1,9 @@
-name: Node.js Package
+name: publish Node.js Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -12,21 +13,22 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
+      - run: yarn install
 
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
+          scope: '@golgetahir'
+      - run: yarn install
+      - run: git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && git config --global user.name "$GITHUB_ACTOR"
+      - run: yarn version --minor
+      - run: git push --tags && git push
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
