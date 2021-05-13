@@ -1,6 +1,6 @@
 {
   "name": "@golgetahir/ftreamapptest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -12,11 +12,8 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/golgetahir/StreamApp.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/golgetahir/StreamApp.git",
+  "author": "<tahir.golge@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/golgetahir/StreamApp/issues"
